@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="Resulticks—Cordova-plugin" version="0.1.1"
+	xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>ReCordovaPlugin</name>
+
+	<js-module name="ReCordovaPlugin" src="www/ReCordovaPlugin.js">
+		<clobbers target="ReCordovaPlugin" />
+	</js-module>
+
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="ReCordovaPlugin">
+				<param name="android-package" value="resu.io.ReCordovaPlugin" />
+                <param name="onload" value="true" />
+			</feature>
+		</config-file>
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+
+        <meta-data android:name="resulticks.default_notification_icon" android:resource="@drawable/ic_launcher" />
+        <meta-data android:name="resulticks.default_notification_icon_transparent" android:resource="@drawable/ic_launcher" />
+        <meta-data android:name="resulticks.default_notification_color" android:resource="@color/colorPrimary" />
+        <meta-data android:name="resulticks.key" android:value="api_key_d2b64e6d-8390-11e9-ab0f-06ab9bb94413" />
+
+      </config-file> 
+        <framework src="io.resu:ReAndroidSDK_54b865b8_5123_461a_accf_d12ed01ce383:-SNAPSHOT" />
+		<source-file src="src/android/ReCordovaPlugin.java" target-dir="src/resu/io" />
+	</platform>
+	<platform name="ios">
+		<config-file parent="/*" target="config.xml">
+			<feature name="ReCordovaPlugin">
+				<param name="ios-package" value="ReCordovaPlugin" />
+                <param name="onload" value="true" />
+			</feature>
+		</config-file>
+		<source-file src="src/ios/ReCordovaPlugin.m" />
+	</platform>
+</plugin>
