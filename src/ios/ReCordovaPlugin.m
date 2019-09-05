@@ -15,7 +15,6 @@
     NSString* echo = [command.arguments objectAtIndex:0];
     if (echo != nil && [echo length] > 0) {
         NSLog(@"userRegister %@",echo);
-
         NSString uniqueId = [[command.arguments objectAtIndex:0] valueForKey:@"uniqueId"];
         NSString name = [[command.arguments objectAtIndex:0] valueForKey:@"name"];
         NSString email = [[command.arguments objectAtIndex:0] valueForKey:@"email"];
