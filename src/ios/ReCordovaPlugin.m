@@ -5,7 +5,6 @@
 @interface ReCordovaPlugin : CDVPlugin {
   // Member variables go here.
 }
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
 - (void)userRegister:(CDVInvokedUrlCommand*)command;
 - (void)customEvent:(CDVInvokedUrlCommand*)command;
 - (void)screenNavigation:(CDVInvokedUrlCommand*)command;
