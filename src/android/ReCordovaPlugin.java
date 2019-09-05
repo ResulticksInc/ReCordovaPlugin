@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -29,10 +28,9 @@ import io.mob.resu.reandroidsdk.error.Log;
  * This class echoes a string called from JavaScript.
  */
 public class ReCordovaPlugin extends CordovaPlugin {
-private static final String TAG = "ReCordovaPlugin";
+    private static final String TAG = "ReCordovaPlugin";
 
     public static CordovaWebView gWebView;
-    CallbackContext callbackContext;
     String OldScreenName = null;
     String newScreenName = null;
     private Calendar oldCalendar = Calendar.getInstance();
@@ -46,15 +44,12 @@ private static final String TAG = "ReCordovaPlugin";
         }
     };
 
-
     public ReCordovaPlugin() {
 
     }
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        AppConstants.LogFlag = true;
-        AppConstants.isHyBird = true;
         gWebView = webView;
         android.util.Log.d(TAG, "==> ReCordovaPlugin initialize");
         LocalBroadcastManager.getInstance(cordova.getActivity()).registerReceiver(mMessageReceiver, new IntentFilter("request"));
@@ -93,17 +88,11 @@ private static final String TAG = "ReCordovaPlugin";
             if (message != null && message.length() > 0) {
                 try {
                     JSONObject jsonObject = message.getJSONObject(0);
-                    String eventName = jsonObject.optString("eventName");
-                    JSONObject eventData = jsonObject.optJSONObject("data");
 
-                    if (TextUtils.isEmpty(eventName)) {
-                        Toast.makeText(cordova.getActivity(), "Event name can't be empty!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (TextUtils.isEmpty(eventData.toString()))
-                        ReAndroidSDK.getInstance(cordova.getActivity()).onTrackEvent(eventName);
-                    else
-                        ReAndroidSDK.getInstance(cordova.getActivity()).onTrackEvent(eventData, eventName);
+                    double latitude = jsonObject.optDouble("latitude");
+                    double longitude = jsonObject.optDouble("longitude");
+                    if (latitude != 0 && longitude != 0)
+                        ReAndroidSDK.getInstance(cordova.getActivity()).onLocationUpdate(latitude, longitude);
 
                 } catch (Exception e) {
                     Log.e("User events Exception: ", String.valueOf(e.getMessage()));
@@ -173,7 +162,7 @@ private static final String TAG = "ReCordovaPlugin";
                     JSONObject eventData = jsonObject.optJSONObject("data");
 
                     if (TextUtils.isEmpty(eventName)) {
-                        Toast.makeText(cordova.getActivity(), "Event name can't be empty!", Toast.LENGTH_SHORT).show();
+                        Log.e("Event name can't be empty!", "");
                         return;
                     }
                     if (TextUtils.isEmpty(eventData.toString()))
@@ -194,7 +183,6 @@ private static final String TAG = "ReCordovaPlugin";
     private void screenTracking(String screenName) {
 
         try {
-
             if (sCalendar == null)
                 sCalendar = Calendar.getInstance();
 
