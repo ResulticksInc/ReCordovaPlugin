@@ -5,7 +5,6 @@
 @interface ReCordovaPlugin : CDVPlugin {
   // Member variables go here.
 }
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
 - (void)userRegister:(CDVInvokedUrlCommand*)command;
 - (void)customEvent:(CDVInvokedUrlCommand*)command;
 - (void)screenNavigation:(CDVInvokedUrlCommand*)command;
@@ -29,7 +28,6 @@
         NSString gender = [[command.arguments objectAtIndex:0] valueForKey:@"gender"];
         NSString token = [[command.arguments objectAtIndex:0] valueForKey:@"token"];
         NSString profileUrl = [[command.arguments objectAtIndex:0] valueForKey:@"profileUrl"];
-
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
