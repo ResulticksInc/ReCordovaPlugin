@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import io.mob.resu.reandroidsdk.AppConstants;
@@ -31,17 +32,29 @@ public class ReCordovaPlugin extends CordovaPlugin {
     private static final String TAG = "ReCordovaPlugin";
 
     public static CordovaWebView gWebView;
+    public static JSONObject jsonObject;
     String OldScreenName = null;
     String newScreenName = null;
+    CallbackContext NotificationCallbacks;
+    ArrayList<JSONObject> notificationByObject;
     private Calendar oldCalendar = Calendar.getInstance();
     private Calendar sCalendar = Calendar.getInstance();
+
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals("request")) {
 
+            if (intent.getAction().equals("notificationPayload")) {
+                if (NotificationCallbacks != null)
+                    try {
+                        NotificationCallbacks.success(new JSONObject(intent.getExtras().getString("notification")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
             }
         }
+
+
     };
 
     public ReCordovaPlugin() {
@@ -51,14 +64,16 @@ public class ReCordovaPlugin extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         gWebView = webView;
+        AppConstants.isHyBird = true;
         android.util.Log.d(TAG, "==> ReCordovaPlugin initialize");
-        LocalBroadcastManager.getInstance(cordova.getActivity()).registerReceiver(mMessageReceiver, new IntentFilter("request"));
+        LocalBroadcastManager.getInstance(cordova.getActivity()).registerReceiver(mMessageReceiver, new IntentFilter("notification"));
     }
-
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+
         switch (action) {
+
             case "userRegister":
                 this.userRegister(args, callbackContext);
                 break;
@@ -75,10 +90,56 @@ public class ReCordovaPlugin extends CordovaPlugin {
                 this.locationUpdate(args, callbackContext);
                 break;
 
+            case "getNotification":
+
+                this.getNotification(args, callbackContext);
+                break;
+
+            case "deleteNotification":
+                this.deleteNotification(args, callbackContext);
+                break;
+
+            case "notificationPayLoadReceiver":
+                this.notificationPayLoadReceiver(args, callbackContext);
+                break;
+
             default:
                 break;
+
         }
         return false;
+    }
+
+    private void notificationPayLoadReceiver(JSONArray args, CallbackContext callbackContext) {
+        NotificationCallbacks = callbackContext;
+    }
+
+    private void deleteNotification(JSONArray message, CallbackContext callbackContext) {
+
+        if (message != null && message.length() > 0) {
+            try {
+                JSONObject jsonObject = message.getJSONObject(0);
+                ReAndroidSDK.getInstance(cordova.getActivity()).deleteNotificationByObject(jsonObject);
+                Log.e("Notification : ", "Delete sucessfully");
+            } catch (Exception e) {
+                Log.e("Delete Notification Exception: ", String.valueOf(e.getMessage()));
+            }
+        } else {
+            Log.e("Delete Notification Exception : ", "Expected one non-empty string argument.");
+        }
+    }
+
+    private void getNotification(JSONArray args, CallbackContext callbackContext) {
+
+        try {
+            notificationByObject = ReAndroidSDK.getInstance(cordova.getActivity()).getNotificationByObject();
+            JSONArray jsonArray = new JSONArray(notificationByObject);
+            callbackContext.success(jsonArray.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     private void locationUpdate(JSONArray message, CallbackContext callbackContext) {
