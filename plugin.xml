@@ -19,7 +19,9 @@
         <meta-data android:name="resulticks.default_notification_icon" android:resource="@mipmap/ic_app_icon" />
         <meta-data android:name="resulticks.default_notification_icon_transparent" android:resource="@mipmap/ic_app_icon_transparent" />
         <meta-data android:name="resulticks.default_notification_color" android:resource="@color/notificationColor" />
+        <meta-data android:name="resulticks.key" android:value="api_key_b7d852b7-4ea8-43d9-a001-3d655834e314" />
       </config-file> 
+        <framework src="io.resu:ReAndroidSDK_54b865b8_5123_461a_accf_d12ed01ce383:-SNAPSHOT" />
 		<source-file src="src/android/ReCordovaPlugin.java" target-dir="src/resu/io" />
 	</platform>
 	<platform name="ios">
