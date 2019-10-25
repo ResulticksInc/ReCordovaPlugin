@@ -162,122 +162,126 @@ public class ReCordovaPlugin extends CordovaPlugin {
                 } else {
                     Log.e("User events Exception: ", "Expected one non-empty string argument.");
                 }
-
-            });
-
-        }
-
-
-        private void screenNavigation (JSONArray message, CallbackContext callbackContext){
-
-            cordova.getActivity().runOnUiThread(new Runnable() {
-                public void run() {
-                    if (message != null && message.length() > 0) {
-                        try {
-                            JSONObject jsonObject = message.getJSONObject(0);
-                            screenTracking(jsonObject.optString("screenName"));
-                            OldScreenName = newScreenName;
-                            newScreenName = jsonObject.optString("screenName");
-                        } catch (Exception e) {
-                            Log.e("userNavigation Exception: ", String.valueOf(e.getMessage()));
-                        }
-
-                    } else {
-                        Log.e("userNavigation Exception: ", "Expected one non-empty string argument.");
-                    }
-                });
-
             }
 
-            private void userRegister (JSONArray message, CallbackContext callbackContext){
+        });
 
-                cordova.getActivity().runOnUiThread(new Runnable() {
-                    public void run() {
-                        if (message != null && message.length() > 0) {
-                            try {
-                                JSONObject jsonObject = message.getJSONObject(0);
-                                MRegisterUser registerUser = new MRegisterUser();
-                                registerUser.setUserUniqueId(jsonObject.optString("uniqueId"));
-                                registerUser.setName(jsonObject.optString("name"));
-                                registerUser.setEmail(jsonObject.optString("email"));
-                                registerUser.setPhone(jsonObject.optString("phone"));
-                                registerUser.setAge(jsonObject.optString("age"));
-                                registerUser.setGender(jsonObject.optString("gender"));
-                                registerUser.setDeviceToken(jsonObject.optString("token"));
-                                registerUser.setProfileUrl(jsonObject.optString("profileUrl"));
-                                ReAndroidSDK.getInstance(cordova.getActivity()).onDeviceUserRegister(registerUser);
-                            } catch (Exception e) {
-                                Log.e("register Exception: ", String.valueOf(e.getMessage()));
-                            }
+    }
 
-                        } else {
 
-                            Log.e("register Exception: ", "Expected one non-empty string argument.");
-                        }
-                    });
+    private void screenNavigation(JSONArray message, CallbackContext callbackContext) {
+
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                if (message != null && message.length() > 0) {
+                    try {
+                        JSONObject jsonObject = message.getJSONObject(0);
+                        screenTracking(jsonObject.optString("screenName"));
+                        OldScreenName = newScreenName;
+                        newScreenName = jsonObject.optString("screenName");
+                    } catch (Exception e) {
+                        Log.e("userNavigation Exception: ", String.valueOf(e.getMessage()));
+                    }
+
+                } else {
+                    Log.e("userNavigation Exception: ", "Expected one non-empty string argument.");
                 }
+            }
+        });
 
-                private void customEvent (JSONArray message, CallbackContext callbackContext){
-                    cordova.getActivity().runOnUiThread(new Runnable() {
-                        public void run() {
-                            if (message != null && message.length() > 0) {
-                                try {
-                                    JSONObject jsonObject = message.getJSONObject(0);
-                                    String eventName = jsonObject.optString("eventName");
-                                    JSONObject eventData = jsonObject.optJSONObject("data");
+    }
 
-                                    if (TextUtils.isEmpty(eventName)) {
-                                        Log.e("Event name can't be empty!", "");
-                                        return;
-                                    }
-                                    if (TextUtils.isEmpty(eventData.toString()))
-                                        ReAndroidSDK.getInstance(cordova.getActivity()).onTrackEvent(eventName);
-                                    else
-                                        ReAndroidSDK.getInstance(cordova.getActivity()).onTrackEvent(eventData, eventName);
+    private void userRegister(JSONArray message, CallbackContext callbackContext) {
 
-                                } catch (Exception e) {
-                                    Log.e("User events Exception: ", String.valueOf(e.getMessage()));
-                                }
-                            } else {
-                                Log.e("User events Exception: ", "Expected one non-empty string argument.");
-                            }
-
-                        });
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                if (message != null && message.length() > 0) {
+                    try {
+                        JSONObject jsonObject = message.getJSONObject(0);
+                        MRegisterUser registerUser = new MRegisterUser();
+                        registerUser.setUserUniqueId(jsonObject.optString("uniqueId"));
+                        registerUser.setName(jsonObject.optString("name"));
+                        registerUser.setEmail(jsonObject.optString("email"));
+                        registerUser.setPhone(jsonObject.optString("phone"));
+                        registerUser.setAge(jsonObject.optString("age"));
+                        registerUser.setGender(jsonObject.optString("gender"));
+                        registerUser.setDeviceToken(jsonObject.optString("token"));
+                        registerUser.setProfileUrl(jsonObject.optString("profileUrl"));
+                        ReAndroidSDK.getInstance(cordova.getActivity()).onDeviceUserRegister(registerUser);
+                    } catch (Exception e) {
+                        Log.e("register Exception: ", String.valueOf(e.getMessage()));
                     }
 
-                    private void screenTracking (String screenName){
+                } else {
 
-                        try {
-                            if (sCalendar == null)
-                                sCalendar = Calendar.getInstance();
-
-                            oldCalendar = sCalendar;
-                            sCalendar = Calendar.getInstance();
-
-                            if (OldScreenName != null) {
-                                AppLifecyclePresenter.getInstance().onSessionStop(cordova.getActivity(), oldCalendar, sCalendar, OldScreenName, null, null);
-                                AppLifecyclePresenter.getInstance().onSessionStartFragment(cordova.getActivity(), OldScreenName, null);
-                            }
-                            if (newScreenName == null)
-                                newScreenName = screenName;
-
-                        } catch (Exception e) {
-                            Log.e("screenTracking Exception: ", "" + e.getMessage());
-
-                        }
-                    }
-
-
-                    @Override
-                    public void onPause ( boolean multitasking){
-                        super.onPause(multitasking);
-                        screenTracking(newScreenName);
-                    }
-
-                    @Override
-                    public void onResume ( boolean multitasking){
-                        super.onResume(multitasking);
-                        oldCalendar = Calendar.getInstance();
-                        sCalendar = Calendar.getInstance();
-                    }
+                    Log.e("register Exception: ", "Expected one non-empty string argument.");
                 }
+            }
+        });
+    }
+
+    private void customEvent(JSONArray message, CallbackContext callbackContext) {
+
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                if (message != null && message.length() > 0) {
+                    try {
+                        JSONObject jsonObject = message.getJSONObject(0);
+                        String eventName = jsonObject.optString("eventName");
+                        JSONObject eventData = jsonObject.optJSONObject("data");
+
+                        if (TextUtils.isEmpty(eventName)) {
+                            Log.e("Event name can't be empty!", "");
+                            return;
+                        }
+                        if (TextUtils.isEmpty(eventData.toString()))
+                            ReAndroidSDK.getInstance(cordova.getActivity()).onTrackEvent(eventName);
+                        else
+                            ReAndroidSDK.getInstance(cordova.getActivity()).onTrackEvent(eventData, eventName);
+
+                    } catch (Exception e) {
+                        Log.e("User events Exception: ", String.valueOf(e.getMessage()));
+                    }
+                } else {
+                    Log.e("User events Exception: ", "Expected one non-empty string argument.");
+                }
+            }
+        });
+    }
+
+    private void screenTracking(String screenName) {
+
+        try {
+            if (sCalendar == null)
+                sCalendar = Calendar.getInstance();
+
+            oldCalendar = sCalendar;
+            sCalendar = Calendar.getInstance();
+
+            if (OldScreenName != null) {
+                AppLifecyclePresenter.getInstance().onSessionStop(cordova.getActivity(), oldCalendar, sCalendar, OldScreenName, null, null);
+                AppLifecyclePresenter.getInstance().onSessionStartFragment(cordova.getActivity(), OldScreenName, null);
+            }
+            if (newScreenName == null)
+                newScreenName = screenName;
+
+        } catch (Exception e) {
+            Log.e("screenTracking Exception: ", "" + e.getMessage());
+
+        }
+    }
+
+
+    @Override
+    public void onPause(boolean multitasking) {
+        super.onPause(multitasking);
+        screenTracking(newScreenName);
+    }
+
+    @Override
+    public void onResume(boolean multitasking) {
+        super.onResume(multitasking);
+        oldCalendar = Calendar.getInstance();
+        sCalendar = Calendar.getInstance();
+    }
+}
