@@ -110,7 +110,7 @@ public class ReCordovaPlugin extends CordovaPlugin {
         return false;
     }
 
-    private void notificationPayLoadReceiver(JSONArray args, CallbackContext callbackContext) {
+    private void notificationPayLoadReceiver(final JSONArray args, CallbackContext callbackContext) {
         NotificationCallbacks = callbackContext;
     }
 
@@ -129,7 +129,7 @@ public class ReCordovaPlugin extends CordovaPlugin {
         }
     }
 
-    private void getNotification(JSONArray args, CallbackContext callbackContext) {
+    private void getNotification(final JSONArray args, CallbackContext callbackContext) {
 
         try {
             notificationByObject = ReAndroidSDK.getInstance(cordova.getActivity()).getNotificationByObject();
@@ -142,7 +142,7 @@ public class ReCordovaPlugin extends CordovaPlugin {
 
     }
 
-    private void locationUpdate(JSONArray message, CallbackContext callbackContext) {
+    private void locationUpdate(final JSONArray message, CallbackContext callbackContext) {
 
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
@@ -169,7 +169,7 @@ public class ReCordovaPlugin extends CordovaPlugin {
     }
 
 
-    private void screenNavigation(JSONArray message, CallbackContext callbackContext) {
+    private void screenNavigation(final JSONArray message, CallbackContext callbackContext) {
 
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
@@ -191,7 +191,7 @@ public class ReCordovaPlugin extends CordovaPlugin {
 
     }
 
-    private void userRegister(JSONArray message, CallbackContext callbackContext) {
+    private void userRegister(final JSONArray message, CallbackContext callbackContext) {
 
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
@@ -220,7 +220,7 @@ public class ReCordovaPlugin extends CordovaPlugin {
         });
     }
 
-    private void customEvent(JSONArray message, CallbackContext callbackContext) {
+    private void customEvent(final JSONArray message, CallbackContext callbackContext) {
 
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
@@ -270,8 +270,7 @@ public class ReCordovaPlugin extends CordovaPlugin {
 
         }
     }
-
-
+    
     @Override
     public void onPause(boolean multitasking) {
         super.onPause(multitasking);
