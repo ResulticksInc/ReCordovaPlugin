@@ -72,6 +72,8 @@
 
         NSString *screenName = [params valueForKey:@"screenName"];
         NSLog(@"screenName %@",screenName);
+        
+        [REiosHandler setScreenNameWithScreenName:screenName];
 
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"params"];
     } else {
