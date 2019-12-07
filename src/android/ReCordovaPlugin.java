@@ -67,6 +67,7 @@ public class ReCordovaPlugin extends CordovaPlugin {
         super.initialize(cordova, webView);
         gWebView = webView;
         AppConstants.isHyBird = true;
+        AppConstants.isCordova = true;
         android.util.Log.d(TAG, "==> ReCordovaPlugin initialize");
         LocalBroadcastManager.getInstance(cordova.getActivity()).registerReceiver(mMessageReceiver, new IntentFilter("SocketCallBacks"));
     }
@@ -147,9 +148,9 @@ public class ReCordovaPlugin extends CordovaPlugin {
     private void UpdateFieldTrackData(JSONArray args, CallbackContext callbackContext) {
 
         try {
-            AppConstants.hyBridFieldTrack = null;
+            AppConstants.hybridFieldTrack = null;
             JSONObject jsonObject = args.getJSONObject(0);
-            AppConstants.hyBridFieldTrack = jsonObject.getJSONArray("fieldTrack");
+            AppConstants.hybridFieldTrack = jsonObject.getJSONArray("fieldTrack");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -191,8 +192,8 @@ public class ReCordovaPlugin extends CordovaPlugin {
             viewChildrens.add(jsonObject2.getInt("id"));
         }
         screenViews.get(0).put("subviews", viewChildrens);
-        AppConstants.hyBirdViewsJson = new JSONArray(screenViews);
-        AppConstants.hyBirdScreenUrl = cordova.getActivity().getClass().getSimpleName();
+        AppConstants.hybridViewsJson = new JSONArray(screenViews);
+        AppConstants.HybridScreenUrl = cordova.getActivity().getClass().getSimpleName();
         handler.removeCallbacks(runnable);
         handler.postDelayed(runnable, 1000);
     }
