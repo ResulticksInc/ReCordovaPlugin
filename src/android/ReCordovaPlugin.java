@@ -22,6 +22,7 @@ import java.util.Calendar;
 
 import io.mob.resu.reandroidsdk.AppConstants;
 import io.mob.resu.reandroidsdk.AppLifecyclePresenter;
+import io.mob.resu.reandroidsdk.IDeepLinkInterface;
 import io.mob.resu.reandroidsdk.MRegisterUser;
 import io.mob.resu.reandroidsdk.ReAndroidSDK;
 import io.mob.resu.reandroidsdk.error.Log;
@@ -81,7 +82,7 @@ public class ReCordovaPlugin extends CordovaPlugin {
             }
 
             @Override
-            public void onDeepLinkData(String s) {
+            public void onDeepLinkData(String data) {
                 android.util.Log.e(TAG, "==> ReCordovaPlugin getCampaignData: "+data);
                 String callBack = "javascript:" + "ResulticksDeeplinkData" + "("+data+")";
                 ReCordovaPlugin.gWebView.sendJavascript(callBack);
