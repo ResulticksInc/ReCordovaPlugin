@@ -49,6 +49,7 @@ module.exports.notificationPayLoadReceiver = function(arg0, success, error) {
 // Capture Screen Tree
 var fieldNeedToTrack = [];
 var fieldTracked = [];
+
 function getViewJson() {
 	try {
 		var viewJson = [];

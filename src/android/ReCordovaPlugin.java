@@ -70,6 +70,30 @@ public class ReCordovaPlugin extends CordovaPlugin {
         AppConstants.isCordova = true;
         android.util.Log.d(TAG, "==> ReCordovaPlugin initialize");
         LocalBroadcastManager.getInstance(cordova.getActivity()).registerReceiver(mMessageReceiver, new IntentFilter("SocketCallBacks"));
+
+     ReAndroidSDK.getCampaignData(new IDeepLinkInterface() {
+            @Override
+            public void onInstallDataReceived(String data) {
+                String callBack = "javascript:" + "ResulticksDeeplinkData" + "("+data+")";
+                ReCordovaPlugin.gWebView.sendJavascript(callBack);
+                android.util.Log.e(TAG, "==> ReCordovaPlugin getCampaignData: "+data);
+
+            }
+
+            @Override
+            public void onDeepLinkData(String s) {
+                android.util.Log.e(TAG, "==> ReCordovaPlugin getCampaignData: "+data);
+                String callBack = "javascript:" + "ResulticksDeeplinkData" + "("+data+")";
+                ReCordovaPlugin.gWebView.sendJavascript(callBack);
+
+            }
+
+            @Override
+            public void onNotificationData(String s) {
+
+            }
+        });
+
     }
 
     @Override
