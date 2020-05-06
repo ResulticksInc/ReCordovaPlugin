@@ -72,7 +72,7 @@ public class ReCordovaPlugin extends CordovaPlugin {
         android.util.Log.d(TAG, "==> ReCordovaPlugin initialize");
         LocalBroadcastManager.getInstance(cordova.getActivity()).registerReceiver(mMessageReceiver, new IntentFilter("SocketCallBacks"));
 
-     /*ReAndroidSDK.getCampaignData(new IDeepLinkInterface() {
+        ReAndroidSDK.getInstance(cordova.getActivity()).getCampaignData(new IDeepLinkInterface() {
             @Override
             public void onInstallDataReceived(String data) {
                 String callBack = "javascript:" + "ResulticksDeeplinkData" + "("+data+")";
@@ -89,12 +89,7 @@ public class ReCordovaPlugin extends CordovaPlugin {
 
             }
 
-            @Override
-            public void onNotificationData(String s) {
-
-            }
-        });*/
-
+        });
     }
 
     @Override
