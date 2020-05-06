@@ -42,7 +42,7 @@ public class ReCordovaPlugin extends CordovaPlugin {
     ArrayList<JSONObject> notificationByObject;
     private Calendar oldCalendar = Calendar.getInstance();
     private Calendar sCalendar = Calendar.getInstance();
-    String tag = "getViewJson";
+    String tag = "ReCordovaPlugin.getViewJson";
 
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
