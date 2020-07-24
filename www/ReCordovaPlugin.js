@@ -1,52 +1,77 @@
 var exec = require('cordova/exec');
 
-module.exports.onDeviceReady = function(arg0, success, error) {
+module.exports.onDeviceReady = function (arg0, success, error) {
 	ReCordovaPlugin.getFieldTrackData(arg0, onEnableFieldTrack);
 	ReCordovaPlugin.screenNavigation(arg0);
 };
 
-module.exports.userRegister = function(arg0, success, error) {
-	exec(success, error, 'ReCordovaPlugin', 'userRegister', [ arg0 ]);
+module.exports.userRegister = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'userRegister', [arg0]);
 };
 
-module.exports.customEvent = function(arg0, success, error) {
-	exec(success, error, 'ReCordovaPlugin', 'customEvent', [ arg0 ]);
+module.exports.customEvent = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'customEvent', [arg0]);
 };
 
-module.exports.locationUpdate = function(arg0, success, error) {
-	exec(success, error, 'ReCordovaPlugin', 'locationUpdate', [ arg0 ]);
+module.exports.locationUpdate = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'locationUpdate', [arg0]);
 };
 
-module.exports.screenNavigation = function(arg0, success, error) {
+module.exports.screenNavigation = function (arg0, success, error) {
 	ReCordovaPlugin.getFieldTrackData(arg0, onEnableFieldTrack);
-	exec(success, error, 'ReCordovaPlugin', 'screenNavigation', [ arg0 ]);
+	exec(success, error, 'ReCordovaPlugin', 'screenNavigation', [arg0]);
 };
 
-module.exports.getNotification = function(arg0, success, error) {
-	exec(success, error, 'ReCordovaPlugin', 'getNotification', [ arg0 ]);
+module.exports.getNotification = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'getNotification', [arg0]);
 };
 
-module.exports.deleteNotification = function(arg0, success, error) {
-	exec(success, error, 'ReCordovaPlugin', 'deleteNotification', [ arg0 ]);
+module.exports.deleteNotification = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'deleteNotification', [arg0]);
 };
 
-module.exports.updateViewsJson = function(arg0, success, error) {
-	exec(success, error, 'ReCordovaPlugin', 'updateViewsJson', [ arg0 ]);
+module.exports.updateViewsJson = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'updateViewsJson', [arg0]);
 };
 
-module.exports.updateFieldTrackData = function(arg0, success, error) {
-	exec(success, error, 'ReCordovaPlugin', 'updateFieldTrackData', [ arg0 ]);
+module.exports.updateFieldTrackData = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'updateFieldTrackData', [arg0]);
 };
 
-module.exports.getFieldTrackData = function(arg0, success, error) {
-	exec(success, error, 'ReCordovaPlugin', 'getFieldTrackData', [ arg0 ]);
+module.exports.getFieldTrackData = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'getFieldTrackData', [arg0]);
 };
 
-module.exports.notificationPayLoadReceiver = function(arg0, success, error) {
-	exec(success, error, 'ReCordovaPlugin', 'notificationPayLoadReceiver', [ arg0 ]);
+module.exports.notificationPayLoadReceiver = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'notificationPayLoadReceiver', [arg0]);
 };
 
-module.exports.getViewJson = function(arg0, success, error) {
+
+module.exports.deleteNotificationByNotificationId = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'deleteNotificationByNotificationId', [arg0]);
+};
+module.exports.deleteNotificationByCampaignId = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'deleteNotificationByCampaignId', [arg0]);
+};
+module.exports.getReadNotificationCount = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'getReadNotificationCount', [arg0]);
+};
+module.exports.getUnReadNotificationCount = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'getUnReadNotificationCount', [arg0]);
+};
+module.exports.readNotification = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'readNotification', [arg0]);
+};
+
+module.exports.unReadNotification = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'unReadNotification', [arg0]);
+};
+
+
+
+
+
+module.exports.getViewJson = function (arg0, success, error) {
 	getViewJsons();
 };
 
@@ -57,13 +82,13 @@ var fieldTracked = [];
 function getViewJsons() {
 	try {
 		var viewJson = [];
-		$('input,button,select,textarea').each(function() {
+		$('input,button,select,textarea').each(function () {
 			console.log($(this).attr('id'));
 			var subdiv = new Object();
 			getViewAttributes(subdiv, viewJson, $(this));
 		});
 
-		$('embed,iframe').each(function() {
+		$('embed,iframe').each(function () {
 			var subdiv = new Object();
 			if ($(this).attr('src') != null && $(this).attr('src') != '') {
 				subdiv['tagurl'] = $(this).prop('src');
@@ -71,12 +96,12 @@ function getViewJsons() {
 			}
 		});
 
-		$('video,audio').each(function() {
+		$('video,audio').each(function () {
 			var subdiv = new Object();
 			if ($(this).attr('src') != null && $(this).attr('src') != '') getViewAttributes(subdiv, viewJson, $(this));
 		});
 
-		$('object').each(function() {
+		$('object').each(function () {
 			var subdiv = new Object();
 			if ($(this).attr('data') != null && $(this).attr('data') != '') {
 				subdiv['tagurl'] = $(this).prop('data');
@@ -84,7 +109,7 @@ function getViewJsons() {
 			}
 		});
 
-		$('a').each(function() {
+		$('a').each(function () {
 			var subdiv = new Object();
 			getViewAttributes(subdiv, viewJson, $(this));
 		});
@@ -173,13 +198,13 @@ function onEnableFieldTrack(data) {
 		var fieldTrackingData = JSON.parse(data);
 		fieldNeedToTrack = fieldTrackingData;
 		if (fieldTrackingData != undefined) {
-			fieldTrackingData.forEach(function(field) {
+			fieldTrackingData.forEach(function (field) {
 				// Value capture
 				if (field.captureType == 'Value' || field.captureType == 'Length') {
 					var id = getIdentifier(field);
 					console.log('Change Event Name :' + id);
 					if (id != undefined && id != null) {
-						$(id).on('change', function(e) {
+						$(id).on('change', function (e) {
 							ViewTrackingListener(field, $(this).val());
 						});
 					}
@@ -191,7 +216,7 @@ function onEnableFieldTrack(data) {
 							let id = field.identifier.replace('id___', '');
 							var onclickattr = document.getElementById(id).getAttribute('onclick');
 							$(viewId).removeAttr('onclick');
-							$(viewId).on(field.captureType.toLowerCase(), function(e) {
+							$(viewId).on(field.captureType.toLowerCase(), function (e) {
 								ViewTrackingListener(field, 'Clicked');
 								if (onclickattr != null) {
 									$(viewId).attr('onClick', onclickattr);
@@ -202,7 +227,7 @@ function onEnableFieldTrack(data) {
 							var viewName = getIdentifier(field);
 							var onclickattr = $(viewName).getAttribute('onclick');
 							$(viewName).removeAttr('onclick');
-							$(viewName).on(field.captureType.toLowerCase(), function(e) {
+							$(viewName).on(field.captureType.toLowerCase(), function (e) {
 								ViewTrackingListener(field, 'Clicked');
 							});
 							if (onclickattr != null) {
@@ -223,7 +248,7 @@ function ViewTrackingListener(field, value) {
 	try {
 		if (field.identifier != undefined) {
 			if (fieldNeedToTrack.length > 0) {
-				fieldNeedToTrack.forEach(function(element) {
+				fieldNeedToTrack.forEach(function (element) {
 					if (element != undefined && field.identifier != undefined) {
 						if (element.identifier == field.identifier) {
 							console.log(' element viewID ' + element.viewID + 'field.viewId : ' + field.viewId);
@@ -237,7 +262,7 @@ function ViewTrackingListener(field, value) {
 			// Filtered tracking data
 			data = [];
 			if (fieldNeedToTrack.length > 0) {
-				fieldNeedToTrack.forEach(function(element) {
+				fieldNeedToTrack.forEach(function (element) {
 					if (element.result != undefined) {
 						data.push(element);
 					}
