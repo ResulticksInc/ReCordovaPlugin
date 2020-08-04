@@ -44,58 +44,6 @@
 
 +(void)load{
     NSLog(@"ReCordova Plugin Load");
-    REiosHandler.notificationDelegate = self;
-    REiosHandler.smartLinkDelegate = self;
-}
-
-- (void)didReceiveSmartLinkWithData:(NSDictionary<NSString *, id> * _Nonnull)data{
-   
-    [self sendJSEvent:data];
-    
-}
-
-- (void)didReceiveResponseWithData:(NSDictionary<NSString * , id>* )data {
-    [self sendJSEvent:data];
-   
-}
-
--(void)sendJSEvent:(NSDictionary *)json {
-    NSLog(@"Resulticks note data : %@", json);
-    
-    NSData *compactJson = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
-    
-    
-//    NSString *myString = [[NSString alloc] initWithData:compactJson encoding:NSUTF8StringEncoding];
-//
-//    NSString *base64EncodedKey = [compactJson base64EncodedStringWithOptions: NSDataBase64Encoding64CharacterLineLength];
-//
-//    NSString *string = [NSString stringWithUTF8String:[compactJson bytes]];
-    
-   NSString *jsonString = [[NSString alloc] initWithData:compactJson encoding:NSASCIIStringEncoding];
-    
-    
-    
-    // NSString *JSONString = [[NSString alloc] initWithBytes:[myData bytes] length:[myData length] encoding:NSUTF8StringEncoding];
-    
-    //[[[MyNewPlugin alloc] init] notifyOfMessage:myData];
-    
-//    NSString *Value1 = @"myFunction";
-//    NSString* Value2 = @"Green day";
-    NSString *myFunction = @"myFunction";
-   // NSString * jsCallBack = [NSString stringWithFormat:@"myFunction(),function success('%@'))", json];
-    
-     NSString * notifyJS = [NSString stringWithFormat:@"%@('%@');", myFunction, jsonString];
-
-    
-    if ([[UIApplication sharedApplication]applicationState] == UIApplicationStateActive){
-         [(UIWebView *)self.viewController.webView stringByEvaluatingJavaScriptFromString:notifyJS];
-    }else{
-        [self.viewController.webView performSelectorOnMainThread:@selector(stringByEvaluatingJavaScriptFromString:) withObject:notifyJS waitUntilDone:NO];
-    }
-}
-
-+(void)addEventListener:(CDVInvokedUrlCommand*)command {
-    
 }
 
 - (void)userRegister:(CDVInvokedUrlCommand*)command {
