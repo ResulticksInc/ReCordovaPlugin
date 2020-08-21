@@ -161,14 +161,47 @@ public class ReCordovaPlugin extends CordovaPlugin {
                 this.unReadNotification(args, callbackContext);
                 break;
 
-
+            case "notificationCTAClicked": // Enable field track
+                this.notificationCTAClicked(args, callbackContext);
+                break;
             default:
 
+                break;
+            case "appConversionTracking": // Enable field track
+                this.appConversionTracking(args, callbackContext);
                 break;
 
         }
         return false;
     }
+    private void appConversionTracking(JSONArray args, CallbackContext callbackContext) {
+        try {
+            ReAndroidSDK.getInstance(cordova.getActivity()).appConversionTracking();
+        } catch (Exception e) {
+            Log.e("appConversionTracking  Exception: ", String.valueOf(e.getMessage()));
+        }
+
+    }
+
+private void notificationCTAClicked(JSONArray message, CallbackContext callbackContext) {
+
+
+        if (message != null && message.length() > 0) {
+
+            try {
+                JSONObject jsonObject = message.getJSONObject(0);
+                ReAndroidSDK.getInstance(cordova.getActivity()).notificationCTAClicked(jsonObject.optString("campaignId"), jsonObject.optString("actionId"));
+                Log.e("notificationCTAClicked : ", " successfully");
+            } catch (Exception e) {
+                Log.e("notificationCTAClicked  Exception: ", String.valueOf(e.getMessage()));
+            }
+        } else {
+            Log.e("notificationCTAClicked  Exception : ", "Expected one non-empty string argument.");
+        }
+
+
+    }
+
 
 
     private void getFieldTrackData(JSONArray args, CallbackContext callbackContext) {
