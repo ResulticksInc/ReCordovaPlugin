@@ -177,6 +177,23 @@ public class ReCordovaPlugin extends CordovaPlugin {
         return false;
     }
 
+    private void updatePushToken(JSONArray message, CallbackContext callbackContext) {
+        try {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = message.getJSONObject(0);
+                if (jsonObject != null) {
+                    ReAndroidSDK.getInstance(cordova.getActivity()).updatePushToken(jsonObject.optString("token"));
+                }
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+
+        } catch (Exception e) {
+            Log.e("updatePushToken  Exception: ", String.valueOf(e.getMessage()));
+        }
+    }
+
     private void appConversionTracking(JSONArray message, CallbackContext callbackContext) {
         try {
             JSONObject jsonObject = null;
@@ -194,7 +211,6 @@ public class ReCordovaPlugin extends CordovaPlugin {
         } catch (Exception e) {
             Log.e("appConversionTracking  Exception: ", String.valueOf(e.getMessage()));
         }
-
     }
 
     private void notificationCTAClicked(JSONArray message, CallbackContext callbackContext) {

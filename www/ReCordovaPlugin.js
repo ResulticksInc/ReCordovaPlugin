@@ -71,19 +71,23 @@ module.exports.notificationCTAClicked = function (arg0, success, error) {
 	exec(success, error, 'ReCordovaPlugin', 'notificationCTAClicked', [arg0]);
 };
 
-module.exports.handleQrLink = function(arg0,success, error) {
-	exec(success, error, 'ReCordovaPlugin', 'handleQrLink', [ arg0 ]);
+module.exports.handleQrLink = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'handleQrLink', [arg0]);
 };
 
-module.exports.getDeepLinkData = function(arg0,success, error) {
-	exec(success, error, 'ReCordovaPlugin', 'getDeepLinkData', [ arg0 ]);
+module.exports.getDeepLinkData = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'getDeepLinkData', [arg0]);
 };
 
-module.exports.appConversionTracking = function(arg0,success,error) {
-	exec(success, error, 'ReCordovaPlugin', 'appConversionTracking', [ arg0 ]);
+module.exports.appConversionTracking = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'appConversionTracking', [arg0]);
 }
-module.exports.formDataCapture = function(arg0,success,error) {
-	exec(success, error, 'ReCordovaPlugin', 'formDataCapture', [ arg0 ]);
+module.exports.formDataCapture = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'formDataCapture', [arg0]);
+}
+
+module.exports.updatePushToken = function (arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'updatePushToken', [arg0]);
 }
 
 module.exports.getViewJson = function (arg0, success, error) {
