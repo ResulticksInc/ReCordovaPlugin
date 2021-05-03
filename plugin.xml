@@ -31,9 +31,8 @@
                 <param name="onload" value="true" />
 			</feature>
 		</config-file>
-		<framework src="src/ios/REiosFramework/REIOSSDK.framework" custom="true" />
-		<framework src="src/ios/REiosFramework/SocketIO.framework" custom="true" />
-		<framework src="src/ios/REiosFramework/Starscream.framework" custom="true" />
+		<framework src="src/ios/REiosFramework/REIOSSDK.xcframework" custom="true" />
+		
 		<source-file src="src/ios/ReCordovaPlugin.m" />
 	</platform>
 </plugin>

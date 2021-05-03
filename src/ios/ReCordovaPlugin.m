@@ -27,6 +27,7 @@
 - (void)getDeepLinkData:(CDVInvokedUrlCommand *)command;
 - (void)appConversionTracking:(CDVInvokedUrlCommand *)command;
 - (void)formDataCapture:(CDVInvokedUrlCommand *)command;
+-(void)updatePushToken:(CDVInvokedUrlCommand *)command;
 
 
 
@@ -332,7 +333,22 @@
 }
 
 - (void)appConversionTracking:(CDVInvokedUrlCommand *)command{
-    [REiosHandler appConversionTracking];
+    NSDictionary *params = [command.arguments firstObject];
+    if (params != nil) {
+        if ([params count] > 0){
+            [REiosHandler appConversionTrackingWithDict:params];
+            
+        }else {
+            [REiosHandler appConversionTracking];
+        }
+        
+    }
+   
+}
+
+-(void)updatePushToken:(CDVInvokedUrlCommand *)command {
+    NSString *token = [command.arguments firstObject];
+    [REiosHandler updatePushTokenWithToken:token];
 }
 
 - (void)formDataCapture:(CDVInvokedUrlCommand *)command{

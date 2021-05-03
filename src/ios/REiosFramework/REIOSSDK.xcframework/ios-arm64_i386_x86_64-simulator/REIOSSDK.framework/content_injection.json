@@ -1,0 +1,33 @@
+{
+    "contentInjection": [
+        {
+            "activityName":"ContentInjectionVC:Vision_Bank.ContentInjectionVC",
+            "fragementName":"",
+            "contentId":"1",
+            "contentFields":[
+                {
+                    "viewId":"1001",
+                    "viewType":"img",
+                    "value":"Desserts.png"
+                },
+                {
+                    "viewId":"1002",
+                    "viewType":"textView",
+                    "value":"This can be set as new description"
+                },
+                {
+                    "viewId":"1003",
+                    "viewType":"editText",
+                    "value":"This can be description"
+                },
+                {
+                    "viewId":"1004",
+                    "viewType":"button",
+                    "value":"Submit"
+                }
+            ]
+        }
+    ]
+}
+
+

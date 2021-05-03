@@ -1,0 +1,407 @@
+{
+  "status": true,
+  "message": "Successful",
+  "tenantID": "cust_c4363a53_4d19_4eb9_b83e_d3ba1f1f9f1e",
+  "dynamiclist": [
+    {
+      "dynamicListId": 1,
+      "dynamicListName": "App in background",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "App in background",
+          "isMandatory": false,
+          "value": "yes",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 2,
+      "dynamicListName": "App Closed",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "EXIT- App closed",
+          "isMandatory": false,
+          "value": "yes",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 3,
+      "dynamicListName": "ENTRY - App installed",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "App install",
+          "isMandatory": false,
+          "value": "yes",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 4,
+      "dynamicListName": "ENTRY - App installed date",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "App installed date",
+          "isMandatory": false,
+          "value": "1",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 5,
+      "dynamicListName": "ENTRY - App opened",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "App opened",
+          "isMandatory": false,
+          "value": "yes",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 6,
+      "dynamicListName": "ENTRY - App updated",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "App updated",
+          "isMandatory": false,
+          "value": "yes",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 7,
+      "dynamicListName": "ENTRY - App updated date",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "App updated date",
+          "isMandatory": false,
+          "value": "1",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 8,
+      "dynamicListName": "ENTRY - App version code",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "App version code",
+          "isMandatory": false,
+          "value": "41",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 9,
+      "dynamicListName": "ENTRY - App version name",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "App version name",
+          "isMandatory": false,
+          "value": "1",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 10,
+      "dynamicListName": "CUSTOM EVENT - Custom events",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Custom events",
+          "isMandatory": false,
+          "value": "TestEvent",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 11,
+      "dynamicListName": "ENTRY - Device type",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Device type",
+          "isMandatory": false,
+          "value": "Android Phone,iPhone",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 12,
+      "dynamicListName": "ENTRY - Language",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Language",
+          "isMandatory": false,
+          "value": "English",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 13,
+      "dynamicListName": "ENTRY - Login",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Login",
+          "isMandatory": false,
+          "value": "Yes",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 14,
+      "dynamicListName": "SESSION - Last visited screen",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Last visited screen",
+          "isMandatory": false,
+          "value": "HomeLoanViewController:/homeloan",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 15,
+      "dynamicListName": "LOCATION - Location",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Location",
+          "isMandatory": false,
+          "value": "Chennai",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 16,
+      "dynamicListName": "ENTRY - New visitors",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "New visitors",
+          "isMandatory": false,
+          "value": "Yes",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 17,
+      "dynamicListName": "ENTRY - Notification disabled",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Notification disabled",
+          "isMandatory": false,
+          "value": "Yes",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 18,
+      "dynamicListName": "ENTRY - Operating systems",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Operating systems",
+          "isMandatory": false,
+          "value": "iOS",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 19,
+      "dynamicListName": "ENTRY - Returning visitors",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Returning visitors",
+          "isMandatory": false,
+          "value": "Yes",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 20,
+      "dynamicListName": "SESSION - Screen views",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Screen views",
+          "isMandatory": false,
+          "value": "2 to 4",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 21,
+      "dynamicListName": "SESSION - Session duration",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Session duration",
+          "isMandatory": false,
+          "value": "Less than 10 secs",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 22,
+      "dynamicListName": "SESSION - Time spent on screen",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Time spent on screen",
+          "isMandatory": false,
+          "value": "Less than 10 secs",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 23,
+      "dynamicListName": "USER TYPE - User type",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true ,
+      "rules": [
+        {
+          "ruleName": "User type",
+          "isMandatory": false,
+          "value": "Known",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 24 ,
+      "dynamicListName": "SESSION - When a user views a specific screen",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "When a user views a specific screen",
+          "isMandatory": false,
+          "value": "HomeLoanViewController:/homeloan",
+          "compareValue": "="
+        }
+      ]
+    },
+    {
+      "dynamicListId": 25 ,
+      "dynamicListName": "Entry - Version",
+      "anyCount": "3",
+      "ruleType": "All",
+      "campaignId": 1,
+      "isFrequencyEnabled": true,
+      "rules": [
+        {
+          "ruleName": "Version",
+          "isMandatory": false,
+          "value": "14.2",
+          "compareValue": "="
+        }
+      ]
+    }
+  ]
+}
